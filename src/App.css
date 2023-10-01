@@ -414,3 +414,33 @@ input:checked + .carousel__slide-container .nav label {
   color: #fff;
   border: 1px solid #fff;
 }
+
+/* login Form */
+.form-lg {
+  min-height: 70vh;
+  margin-top: 10vh;
+}
+
+.form__title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form__link {
+  margin-left: 8px;
+  text-decoration: none;
+  color: rgb(85, 85, 236);
+  font-weight: 700;
+}
+
+.form__link:hover,
+.form__link:focus {
+  color: gray;
+}
+
+.form-lg .form_btn--submit.login__btn {
+  max-width: none;
+  width: 600px;
+  background-color: rgb(85, 85, 236);
+  color: #fff;
+}
