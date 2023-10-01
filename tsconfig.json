@@ -22,6 +22,7 @@
   // paths => 모듈 이름과 해당 모듈 파일의 경로를 맵핑하는 설정
   "paths": {
     "pages/*": ["pages/*"],
-    "components/*": ["components/*"]
+    "components/*": ["components/*"],
+    "firebaseApp/*": ["firebaseApp/*"]
   }
 }
