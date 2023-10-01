@@ -1,7 +1,9 @@
+import PostForm from "components/PostForm";
+
 const PostNew = () => {
   return (
     <>
-      <h1>PostNew</h1>
+      <PostForm />
     </>
   );
 };
