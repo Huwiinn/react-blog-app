@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# ErrorNote
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+문제 : can't not module react-router-dom
 
-## Available Scripts
+해결 : @types(@types/react-router-dom)를 설치하고 React-router-dom을 설치하기만 하면 됩니다.
+yarn add --dev @types/react-router-dom 만 설치해주었을 때 문제의 에러가 발생. 기본 react-router-dom도 설치받아주었을 때 문제 해결되었습니다.
 
-In the project directory, you can run:
+Typescript react-router-dom은 최신 업데이트가 5ver임.
+--dev로 깔았을 때는 에러가 났는데, --dev를 지우고 일반 의존성에 넣어 설치했는데 정상 작동함.
 
-### `yarn start`
+왜 그런지는 아직 잘 모르겠으나, 다시 이런일이 일어난다면 이 메모를 보고 확인해보자.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+⬇️
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+✅ 참고 : https://stackoverflow.com/questions/68899565/what-causes-the-typescript-module-has-no-exported-member-ts2305-error-and-how
 
-### `yarn test`
+https://stackoverflow.com/questions/56695271/react-router-and-typescript-throwing-cant-resolve-react-router-dom-error
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+<hr>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+24.02.22(목)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- .env 파일을 수정하고 터미널을 한 번 종로 후, 다시 켜서 확인하는 습관을 들여야 합니다.
