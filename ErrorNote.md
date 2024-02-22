@@ -1,5 +1,3 @@
-# ErrorNote
-
 문제 : can't not module react-router-dom
 
 해결 : @types(@types/react-router-dom)를 설치하고 React-router-dom을 설치하기만 하면 됩니다.
@@ -10,15 +8,11 @@ Typescript react-router-dom은 최신 업데이트가 5ver임.
 
 왜 그런지는 아직 잘 모르겠으나, 다시 이런일이 일어난다면 이 메모를 보고 확인해보자.
 
-⬇️
-
-✅ 참고 : https://stackoverflow.com/questions/68899565/what-causes-the-typescript-module-has-no-exported-member-ts2305-error-and-how
-
-https://stackoverflow.com/questions/56695271/react-router-and-typescript-throwing-cant-resolve-react-router-dom-error
-
-
 <hr>
 
+참고 : https://stackoverflow.com/questions/68899565/what-causes-the-typescript-module-has-no-exported-member-ts2305-error-and-how
+
+https://stackoverflow.com/questions/56695271/react-router-and-typescript-throwing-cant-resolve-react-router-dom-error
 
 24.02.22(목)
 
