@@ -12,17 +12,20 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { useState } from "react";
 
-export default function Router() {
+interface RouterProps {
+  auth: boolean;
+}
+
+export default function Router({ auth }: RouterProps) {
   // firebase Auth가 인증되었으면 true로 변경해주는 로직을 추가합니다.
-  const [isAuth, setIsAuth] = useState<Boolean>(false);
 
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        {isAuth ? (
+        {auth ? (
           <>
+            <Route path="/" element={<Home />} />
             <Route path="/posts" element={<PostList />} />
             <Route path="/posts/:id" element={<PostDetail />} />
             <Route path="/posts/new" element={<PostNew />} />
@@ -31,13 +34,12 @@ export default function Router() {
           </>
         ) : (
           <>
+            {/* 지정되어있지 않은 Route로 진입할 때, 강제로 Home으로 Navigate 시킴 */}
+            <Route path="*" element={<Navigate replace to="/login" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </>
         )}
-
-        {/* 지정되어있지 않은 Route로 진입할 때, 강제로 Home으로 Navigate 시킴 */}
-        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
       <Footer />
     </>

@@ -7,11 +7,23 @@ const LoginForm = () => {
       <h1 className="form__title">로그인</h1>
       <div className="form_block">
         <label htmlFor="email">이메일</label>
-        <input type="email" name="email" id="email" required />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          required
+          placeholder="아이디를 입력하세요."
+        />
       </div>
       <div className="form_block">
         <label htmlFor="summary">비밀번호</label>
-        <input type="password" name="password" id="password" required />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          placeholder="비밀번호룰 입력하세요."
+        />
       </div>
       <div className="form_block">
         <b>계정이 없으신가요?</b>

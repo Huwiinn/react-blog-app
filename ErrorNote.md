@@ -13,3 +13,7 @@ Typescript react-router-dom은 최신 업데이트가 5ver임.
 참고 : https://stackoverflow.com/questions/68899565/what-causes-the-typescript-module-has-no-exported-member-ts2305-error-and-how
 
 https://stackoverflow.com/questions/56695271/react-router-and-typescript-throwing-cant-resolve-react-router-dom-error
+
+24.02.22(목)
+
+- .env 파일을 수정하고 터미널을 한 번 종로 후, 다시 켜서 확인하는 습관을 들여야 합니다.
