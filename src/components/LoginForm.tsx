@@ -57,6 +57,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={(e) => onSubmit(e)} className="form form-lg">
+
       <h1 className="form__title">로그인</h1>
       <div className="form_block">
         <label htmlFor="email">이메일</label>

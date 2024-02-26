@@ -20,6 +20,7 @@ export default function Router({ auth }: RouterProps) {
   // firebase Auth가 인증되었으면 true로 변경해주는 로직을 추가합니다.
   // console.log("auth : ", auth);
 
+
   return (
     <>
       <Header />

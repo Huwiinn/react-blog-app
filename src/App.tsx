@@ -33,6 +33,7 @@ function App() {
     <>
       <ToastContainer />
       {init ? <Router auth={isAuth} /> : <Loader />}
+
     </>
   );
 }
