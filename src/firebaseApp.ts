@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, FirebaseApp, getApp } from "firebase/app";
 import "firebase/auth";
-import { preProcessFile } from "typescript";
+import { getFirestore } from "firebase/firestore";
 
 export let app: FirebaseApp;
 
@@ -28,5 +28,8 @@ try {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+export const db = getFirestore(app);
 
 export default firebase;
