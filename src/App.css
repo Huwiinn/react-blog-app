@@ -449,3 +449,27 @@ input:checked + .carousel__slide-container .nav label {
   color: red;
   margin-bottom: 8px;
 }
+
+/* loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  /* 강의에서 제공한 코드 - 정중앙에 로딩 스피너를 위치시키기 위함 */
+  /* position: absolute;
+  left : 0;
+  right : 0;
+  top : 0;
+  bottom: 0;
+  margin : 0 auto; 
+  z-index : 999 */
+
+  /* 내코드 - 정중앙에 로딩 스피너를 위치시키기 위함 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+
+  border: 5px solid #ffa520;
+  border-radius: 50%;
+}
