@@ -3,13 +3,16 @@ import PostList from "components/PostList";
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "firebaseApp";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import AuthContext from "context/AuthContext";
 
 const Profile = () => {
-  const auth = getAuth(app);
+  const { user } = useContext(AuthContext);
+
+  console.log("user : ", user);
 
   const onSignOut = async () => {
     const auth = getAuth(app);
-
     try {
       await signOut(auth);
       toast.success("로그아웃 되었습니다.", { position: "top-right" });
@@ -24,10 +27,8 @@ const Profile = () => {
         <div className="profile__info">
           <div className="profile__image" />
           <div>
-            <div className="profile__email">{auth?.currentUser?.email}</div>
-            <div className="profile__name">
-              {auth?.currentUser?.displayName || "유저1"}
-            </div>
+            <div className="profile__email">{user?.email}</div>
+            <div className="profile__name">{user?.displayName || "유저1"}</div>
           </div>
         </div>
         <div>
