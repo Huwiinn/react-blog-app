@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
+    // baseUrl은 절대 경로를 기준으로 하는 기본 directory지정을 뜻합니다.
+    "baseUrl": "src",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +18,12 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  // paths => 모듈 이름과 해당 모듈 파일의 경로를 맵핑하는 설정
+  "paths": {
+    "pages/*": ["pages/*"],
+    "components/*": ["components/*"],
+    "firebaseApp/*": ["firebaseApp/*"],
+    "context/*": ["context/*"]
+  }
 }
