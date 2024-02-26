@@ -18,6 +18,8 @@ interface RouterProps {
 
 export default function Router({ auth }: RouterProps) {
   // firebase Auth가 인증되었으면 true로 변경해주는 로직을 추가합니다.
+  // console.log("auth : ", auth);
+
 
   return (
     <>
@@ -31,13 +33,14 @@ export default function Router({ auth }: RouterProps) {
             <Route path="/posts/new" element={<PostNew />} />
             <Route path="/posts/edit/:id" element={<PostEdit />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
           </>
         ) : (
           <>
             {/* 지정되어있지 않은 Route로 진입할 때, 강제로 Home으로 Navigate 시킴 */}
-            <Route path="*" element={<Navigate replace to="/login" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="*" element={<Login />} />
           </>
         )}
       </Routes>

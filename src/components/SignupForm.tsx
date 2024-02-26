@@ -4,7 +4,6 @@ import { app } from "firebaseApp";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Home from "./pages/home";
 
 const SignupForm = () => {
   const [error, setError] = useState<string>("");
@@ -27,8 +26,6 @@ const SignupForm = () => {
       setEmail("");
       setPassword("");
       setPasswordConfirm("");
-
-      navigate("/");
     } catch (error: any) {
       toast.error(error?.message, { position: "top-right" });
     }
