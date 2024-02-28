@@ -142,10 +142,7 @@ footer {
 .post__delete:hover,
 .post__delete:focus {
   color: #000;
-}
-.post__edit:hover,
-.post__edit:focus {
-  color: #000;
+  cursor: pointer;
 }
 
 /* post detail */
@@ -169,6 +166,14 @@ footer {
 
 .post__detail .post__box {
   border: none;
+}
+
+.post__no-post {
+  padding: 24px;
+  text-align: center;
+  color: gray;
+  border: 1px solid gray;
+  border-radius: 4px;
 }
 
 /* profile */

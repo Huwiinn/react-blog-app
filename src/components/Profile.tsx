@@ -9,8 +9,6 @@ import AuthContext from "context/AuthContext";
 const Profile = () => {
   const { user } = useContext(AuthContext);
 
-  console.log("user : ", user);
-
   const onSignOut = async () => {
     const auth = getAuth(app);
     try {

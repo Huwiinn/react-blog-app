@@ -1,14 +1,13 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Router from "./components/Router";
-import { app, db } from "firebaseApp";
+import { app } from "firebaseApp";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "components/Loader";
 
 function App() {
-  console.log("db : ", db);
   const auth = getAuth(app);
 
   // auth를 체크하기 전에는 loader를 띄워주는 용도
@@ -27,8 +26,6 @@ function App() {
       setInit(true);
     });
   }, [auth]);
-
-  // console.log(auth.currentUser);
 
   return (
     <>
