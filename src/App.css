@@ -176,6 +176,10 @@ footer {
   border-radius: 4px;
 }
 
+.post__text--pre-wrap {
+  white-space: pre-wrap;
+}
+
 /* profile */
 
 .profile__box {

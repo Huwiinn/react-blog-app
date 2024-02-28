@@ -9,8 +9,8 @@ interface PostListProps {
   hasNavigation?: boolean;
 }
 
-interface PostProps {
-  id: string;
+export interface PostProps {
+  id?: string;
   content: string;
   createdAt: string;
   email: string;
@@ -33,7 +33,7 @@ const PostList = ({ hasNavigation = true }: PostListProps) => {
 
       // setPosts((prevPosts) => [...prevPosts, dataObj]); 해당 에러가 왜 발생하는지 알아볼 것. 아래는 에러를 해결한 코드임.
       console.log("dataObj : ", dataObj);
-      setPosts((prevPosts) => [dataObj as PostProps, ...prevPosts]);
+      setPosts((prevPosts) => [...prevPosts, dataObj as PostProps]);
     });
   };
 
@@ -63,7 +63,7 @@ const PostList = ({ hasNavigation = true }: PostListProps) => {
         {posts.length > 0 ? (
           posts.map((post, index) => (
             <div key={post.id} className="post__box">
-              <Link to={`/posts/${index}`}>
+              <Link to={`/posts/${post.id}`}>
                 <div className="post__profile-box">
                   <div className="post__profile" />
                   <div className="post__author-name">{post.email}</div>
@@ -71,7 +71,7 @@ const PostList = ({ hasNavigation = true }: PostListProps) => {
                 </div>
                 <div className="post__title">{post.title}</div>
               </Link>
-              <div className="post__text">{post.content}</div>
+              <div className="post__text">{post.summary}</div>
               {post?.email === user?.email && (
                 <div className="post__utils-box">
                   <div className="post__delete">삭제</div>
