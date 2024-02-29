@@ -16,6 +16,8 @@ export interface PostProps {
   email: string;
   summary: string;
   title: string;
+  updatedAt?: string;
+  uid?: string;
 }
 
 type TabType = "all" | "my" | "recent";

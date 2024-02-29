@@ -57,7 +57,7 @@ const PostDetail = () => {
                   삭제
                 </div>
                 <div className="post__edit" role="presentation">
-                  <Link to={`/posts/edit/{params.id}`}>수정</Link>
+                  <Link to={`/posts/edit/${params.id}`}>수정</Link>
                 </div>
               </div>
             ) : (
