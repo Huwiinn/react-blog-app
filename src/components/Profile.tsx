@@ -35,7 +35,6 @@ const Profile = () => {
           </Link>
         </div>
       </div>
-      <PostList hasNavigation={false} />
     </div>
   );
 };

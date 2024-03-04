@@ -55,21 +55,29 @@ const PostDetail = () => {
               <div className="post__author-name">{post.email}</div>
               <div className="post__date">{post.createdAt}</div>
             </div>
-            {user?.email === post?.email ? (
-              <div className="post__utils-box">
-                <div
-                  className="post__delete"
-                  role="presentation"
-                  onClick={() => handleDelete(post.id as string)}>
-                  삭제
+            <div className="post__utils-box">
+              {post?.category && (
+                <div className="post__category">
+                  카테고리 : {post?.category}
                 </div>
-                <div className="post__edit" role="presentation">
-                  <Link to={`/posts/edit/${params.id}`}>수정</Link>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
+              )}
+              {user?.email === post?.email ? (
+                <>
+                  <div
+                    className="post__delete"
+                    role="presentation"
+                    onClick={() => handleDelete(post.id as string)}>
+                    삭제
+                  </div>
+                  <div className="post__edit" role="presentation">
+                    <Link to={`/posts/edit/${params.id}`}>수정</Link>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+
             <div className="post__text post__text--pre-wrap">
               {post.content}
             </div>

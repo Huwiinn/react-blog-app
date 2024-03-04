@@ -4,11 +4,14 @@ import { db } from "firebaseApp";
 import AuthContext from "context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { PostProps } from "./PostList";
+import { CATEGORIES, CategoryType, PostProps } from "./PostList";
 
 const PostForm = (props: any) => {
   const [post, setPost] = useState<PostProps | null>(null);
   const [title, setTitle] = useState<string>("");
+  const [postCategory, setPostCategory] = useState<CategoryType | string>(
+    "Frontend"
+  );
   const [summary, setSummary] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const { user } = useContext(AuthContext);
@@ -33,11 +36,13 @@ const PostForm = (props: any) => {
     }
   }, [params?.id]);
 
+  // 게시글 수정시, 해당 게시글의 데이터를 불러오기
   useEffect(() => {
     if (post) {
       setTitle(post?.title);
       setSummary(post?.summary);
       setContent(post?.content);
+      setPostCategory(post?.category as string);
     }
   }, [post]);
 
@@ -53,8 +58,13 @@ const PostForm = (props: any) => {
           title,
           summary,
           content,
-          updatedAt: new Date()?.toLocaleDateString(),
+          createdAt: new Date()?.toLocaleDateString("ko", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }), // 현재 날짜와 시간을 표기
           uid: user?.uid,
+          category: postCategory,
         });
 
         toast.success("게시글 수정 완료!", { position: "top-right" });
@@ -66,11 +76,19 @@ const PostForm = (props: any) => {
           title,
           summary,
           content,
-          createdAt: new Date()?.toLocaleDateString(), // 현재 날짜와 시간을 표기
+          createdAt: new Date()?.toLocaleDateString("ko", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }), // 현재 날짜와 시간을 표기
           email: user?.email,
+          uid: user?.uid,
+          category: postCategory,
         });
 
         toast.success("게시글 작성 완료!", { position: "top-right" });
+
+        console.log("postCategory : ", postCategory);
 
         navigate("/");
 
@@ -85,7 +103,9 @@ const PostForm = (props: any) => {
   };
 
   const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const {
       target: { name, value },
@@ -93,6 +113,10 @@ const PostForm = (props: any) => {
 
     if (name === "title") {
       setTitle(value);
+    }
+
+    if (name === "category") {
+      setPostCategory(value as CategoryType);
     }
 
     if (name === "summary") {
@@ -104,7 +128,6 @@ const PostForm = (props: any) => {
     }
   };
 
-  console.log(title, summary, content);
   return (
     <form onSubmit={onSubmit} className="form">
       <div className="form_block">
@@ -117,6 +140,25 @@ const PostForm = (props: any) => {
           onChange={onChange}
           value={title}
         />
+      </div>
+      <div className="form_block">
+        <label htmlFor="category">카테고리</label>
+        <select
+          name="category"
+          id="category"
+          required
+          onChange={onChange}
+          defaultValue={postCategory}>
+          {CATEGORIES.map((category, idx) => (
+            <option key={`category_key_${idx}`} value={category}>
+              {category}
+            </option>
+          ))}
+          {/* <option value="frontend">FrontEnd</option>
+          <option value="backend">Backend</option>
+          <option value="web">Web</option>
+          <option value="native">Native</option> */}
+        </select>
       </div>
       <div className="form_block">
         <label htmlFor="summary">요약</label>

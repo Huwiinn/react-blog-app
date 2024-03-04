@@ -3,7 +3,7 @@ import { useState } from "react";
 const Carousel = () => {
   const [activeImage, setActiveImage] = useState(1);
 
-  console.log("activeImage : ---------------", activeImage);
+  // console.log("activeImage : ---------------", activeImage);
 
   const imgURL1 =
     "https://images.unsplash.com/photo-1692475684393-d4dcba84309f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8TThqVmJMYlRSd3N8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=60";
