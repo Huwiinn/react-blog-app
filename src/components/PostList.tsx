@@ -1,5 +1,4 @@
 import AuthContext from "context/AuthContext";
-import { ThemeContext } from "context/ThemeContext";
 import {
   collection,
   deleteDoc,
@@ -98,7 +97,10 @@ const PostList = ({
     const confirm = window.confirm("정말 게시글을 삭제하시겠습니까?");
     if (confirm && PostId) {
       await deleteDoc(doc(db, "posts", PostId));
-      toast.success("게시글 삭제 완료!!", { position: "top-right" });
+      toast.success("게시글 삭제 완료!!", {
+        position: "top-right",
+        autoClose: 1000,
+      });
       getPosts(); // 변경된 게시글을 다시 로드
     }
   };
