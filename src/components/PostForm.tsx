@@ -1,38 +1,101 @@
-import React, { useContext, useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
+import { collection, addDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import AuthContext from "context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { CATEGORIES, CategoryType, PostProps } from "./PostList";
 
 const PostForm = (props: any) => {
+  const [post, setPost] = useState<PostProps | null>(null);
   const [title, setTitle] = useState<string>("");
+  const [postCategory, setPostCategory] = useState<CategoryType | string>(
+    "Frontend"
+  );
   const [summary, setSummary] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
+  const params = useParams();
+
+  const getPost = async (id: string) => {
+    if (id) {
+      const docRef = doc(db, "posts", id);
+      const docSnap = await getDoc(docRef);
+
+      // console.log("docSnap : ", docSnap.data());
+
+      setPost({ id: docSnap.id, ...(docSnap.data() as PostProps) });
+    }
+  };
+
+  useEffect(() => {
+    if (params?.id) {
+      getPost(params.id);
+    }
+  }, [params?.id]);
+
+  // 게시글 수정시, 해당 게시글의 데이터를 불러오기
+  useEffect(() => {
+    if (post) {
+      setTitle(post?.title);
+      setSummary(post?.summary);
+      setContent(post?.content);
+      setPostCategory(post?.category as string);
+    }
+  }, [post]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      // firestoe로 데이터 생성
-      const postDoc = await addDoc(collection(db, "posts"), {
-        title,
-        summary,
-        content,
-        createdAt: new Date()?.toLocaleDateString(), // 현재 날짜와 시간을 표기
-        email: user?.email,
-      });
+      // post 데이터가 있으면 수정으로 간주
+      if (post && post.id) {
+        const postUpdateRef = doc(db, "posts", post?.id);
 
-      toast.success("게시글 작성 완료!", { position: "top-right" });
+        await updateDoc(postUpdateRef, {
+          title,
+          summary,
+          content,
+          createdAt: new Date()?.toLocaleDateString("ko", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }), // 현재 날짜와 시간을 표기
+          uid: user?.uid,
+          category: postCategory,
+        });
 
-      navigate("/");
+        toast.success("게시글 수정 완료!", { position: "top-right" });
 
-      setTitle("");
-      setSummary("");
-      setContent("");
+        navigate(`/posts/${post.id}`);
+      } else {
+        // firestore로 데이터 생성
+        await addDoc(collection(db, "posts"), {
+          title,
+          summary,
+          content,
+          createdAt: new Date()?.toLocaleDateString("ko", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }), // 현재 날짜와 시간을 표기
+          email: user?.email,
+          uid: user?.uid,
+          category: postCategory,
+        });
+
+        toast.success("게시글 작성 완료!", { position: "top-right" });
+
+        console.log("postCategory : ", postCategory);
+
+        navigate("/");
+
+        setTitle("");
+        setSummary("");
+        setContent("");
+      }
     } catch (e) {
       console.log("e : ", e);
       toast.error("게시글 작성 실패 ㅠㅠ", { position: "top-right" });
@@ -40,7 +103,9 @@ const PostForm = (props: any) => {
   };
 
   const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const {
       target: { name, value },
@@ -48,6 +113,10 @@ const PostForm = (props: any) => {
 
     if (name === "title") {
       setTitle(value);
+    }
+
+    if (name === "category") {
+      setPostCategory(value as CategoryType);
     }
 
     if (name === "summary") {
@@ -59,7 +128,6 @@ const PostForm = (props: any) => {
     }
   };
 
-  console.log(title, summary, content);
   return (
     <form onSubmit={onSubmit} className="form">
       <div className="form_block">
@@ -72,6 +140,25 @@ const PostForm = (props: any) => {
           onChange={onChange}
           value={title}
         />
+      </div>
+      <div className="form_block">
+        <label htmlFor="category">카테고리</label>
+        <select
+          name="category"
+          id="category"
+          required
+          onChange={onChange}
+          defaultValue={postCategory}>
+          {CATEGORIES.map((category, idx) => (
+            <option key={`category_key_${idx}`} value={category}>
+              {category}
+            </option>
+          ))}
+          {/* <option value="frontend">FrontEnd</option>
+          <option value="backend">Backend</option>
+          <option value="web">Web</option>
+          <option value="native">Native</option> */}
+        </select>
       </div>
       <div className="form_block">
         <label htmlFor="summary">요약</label>
@@ -95,7 +182,11 @@ const PostForm = (props: any) => {
         />
       </div>
       <div className="form_block">
-        <input type="submit" value="제출" className="form_btn--submit" />
+        <input
+          type="submit"
+          value={post ? "수정" : "제출"}
+          className="form_btn--submit"
+        />
       </div>
     </form>
   );

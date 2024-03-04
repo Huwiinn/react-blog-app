@@ -168,6 +168,11 @@ footer {
   border: none;
 }
 
+.post__detail .post__utils-box {
+  display: flex;
+  align-items: center;
+}
+
 .post__no-post {
   padding: 24px;
   text-align: center;
@@ -178,6 +183,13 @@ footer {
 
 .post__text--pre-wrap {
   white-space: pre-wrap;
+}
+
+.post__category {
+  color: black;
+  border: 1px solid gray;
+  padding: 4px 12px;
+  border-radius: 8px;
 }
 
 /* profile */
@@ -457,6 +469,14 @@ input:checked + .carousel__slide-container .nav label {
 .form__error {
   color: red;
   margin-bottom: 8px;
+}
+
+.form select {
+  border: 1px solid gray;
+  max-width: 680px;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 4px;
 }
 
 /* loader */

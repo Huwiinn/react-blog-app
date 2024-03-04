@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }: AuthProvider) => {
 
   // auth를 체크하기 전에는 loader를 띄워주는 용도
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-
+  // console.log("currentUser : ", currentUser?.uid);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
