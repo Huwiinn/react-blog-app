@@ -17,7 +17,11 @@ const Footer = () => {
       </div>
       <div className="theme_btn_wrap">
         <button className="theme_btn" type="button" onClick={toggleDarkMode}>
-          {theme === "light" ? <BsSun /> : <BsMoon />}
+          {theme === "light" ? (
+            <BsSun className="theme-icon" />
+          ) : (
+            <BsMoon className="theme-icon" />
+          )}
         </button>
       </div>
     </footer>
