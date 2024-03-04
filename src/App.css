@@ -42,8 +42,19 @@ footer {
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
+}
+
+footer .theme_btn_wrap .theme_btn {
+  padding: 6px 12px;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+}
+
+footer .theme_btn_wrap .theme_btn:hover {
+  transition-duration: 0.2s;
+  box-shadow: 8px 8px 12px gray;
 }
 
 /* post__navigation */

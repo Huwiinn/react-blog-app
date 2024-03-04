@@ -1,27 +1,29 @@
 import React, { createContext, useState } from "react";
 
-interface ThemeProvider {
+interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ThemeContext = createContext<{
-  isDark: boolean;
-  toggleDarkMode: () => void;
-}>({
-  isDark: false,
+const ThemeContext = createContext({
+  theme: "light",
   toggleDarkMode: () => {},
-}); // 기본값 설정하고, 아래 return구문에서 .Provider value 설정 해줘야함.
+});
 
-const ThemeContextProvider = ({ children }: ThemeProvider) => {
-  const [isDark, setIsDark] = useState<boolean>(false);
+export const ThemeContextProvider = ({ children }: ThemeProviderProps) => {
+  const [theme, setTheme] = useState(
+    window.localStorage.getItem("theme") || "light"
+  );
 
-  const toggleDarkMode = () => setIsDark((prevTheme) => !prevTheme);
+  const toggleDarkMode = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    window.localStorage.setItem("theme", theme === "light" ? "dark" : "light");
+  };
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ theme, toggleDarkMode }}>
       {children}
     </ThemeContext.Provider>
   );
 };
 
-export default ThemeContextProvider;
+export default ThemeContext;

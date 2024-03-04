@@ -1,5 +1,4 @@
 import AuthContext from "context/AuthContext";
-import { ThemeContext } from "context/ThemeContext";
 import {
   collection,
   deleteDoc,
