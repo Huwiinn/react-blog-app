@@ -17,3 +17,5 @@ root.render(
     </AuthContextProvider>
   </ThemeContextProvider>
 );
+
+// 폴더 최상단 index.tsx는 ReactDom.render가 되는 구간이다.

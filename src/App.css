@@ -170,7 +170,7 @@ footer .theme_btn_wrap .theme_btn:hover {
 }
 
 .post__detail .post__utils-box {
-  padding: 6px 0;
+  padding: 12px 0;
   margin: 12px 0;
   border-top: 1px solid #f2f2f2;
   border-bottom: 1px solid #f2f2f2;
@@ -207,6 +207,106 @@ footer .theme_btn_wrap .theme_btn:hover {
   border: 1px solid gray;
   padding: 4px 12px;
   border-radius: 8px;
+}
+
+/* comments */
+
+.comments {
+  width: 100%;
+}
+
+.comments__form label {
+  width: 100%;
+  font-weight: 600;
+  display: block;
+  margin: 20px 0 10px 0;
+}
+
+.comments__form textarea {
+  display: block;
+  width: 100%;
+  min-width: 100px;
+  min-height: 120px;
+  max-width: 600px;
+  padding: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid gray;
+  border-radius: 4px;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.comments__form .form__block {
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.comments .form__btn-submit {
+  padding: 12px 24px;
+  background-color: inherit;
+  border: 1px solid #333;
+  border-radius: 4px;
+  transition: all 0.3s linear;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.comments .form__btn-submit:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+.form__block-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.comment__profile-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 4px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.comment__email {
+  font-weight: 500;
+}
+
+.comment__profile-info .comment__createdAt,
+.comment__profile-info .comment__delete {
+  color: gray;
+  font-size: 12px;
+}
+
+.comment__profile-info .comment__delete {
+  cursor: pointer;
+}
+
+.comment__profile-info .comment__delete:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* .comment__createdAt {
+  margin-left: 12px;
+  margin-right: 4px;
+} 이렇게 안하고, 부모 flex에서 gap으로 여백 설정가능.*/
+
+.comments__list {
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.comment__box {
+  padding: 12px 0;
+  border-bottom: 1px solid lightgray;
 }
 
 /* profile */
@@ -543,8 +643,22 @@ input:checked + .carousel__slide-container .nav label {
 .dark .post__author-name,
 .dark .footer__theme-btn,
 .dark .profile__name,
-.dark .post__text {
+.dark .post__category,
+.dark .post__text,
+.dark .comments__list,
+.dark .form__btn-submit,
+.dark .comments__list .comment__profile-info div {
   color: white;
+}
+
+.dark .form__btn-submit {
+  border: 1px solid #f2f2f2;
+  transition: all 0.25s ease-in-out;
+}
+
+.dark .form__btn-submit:hover {
+  background-color: #f2f2f2;
+  color: #333;
 }
 
 .dark a:hover,
