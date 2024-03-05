@@ -8,6 +8,9 @@
 /.pnp
 .pnp.js
 .history
+.firebaserc
+firebase.json
+.firebase
 
 # testing
 /coverage
