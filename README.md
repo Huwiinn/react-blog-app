@@ -23,3 +23,6 @@ https://stackoverflow.com/questions/56695271/react-router-and-typescript-throwin
 24.02.22(목)
 
 - .env 파일을 수정하고 터미널을 한 번 종로 후, 다시 켜서 확인하는 습관을 들여야 합니다.
+
+
+https://react-blog-prac.web.app/signup
